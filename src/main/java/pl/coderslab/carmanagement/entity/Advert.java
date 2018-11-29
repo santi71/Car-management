@@ -1,12 +1,13 @@
 package pl.coderslab.carmanagement.entity;
 
+import pl.coderslab.carmanagement.details.AdvertDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "advert")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Advert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,11 @@ public class Advert {
     private LocalDate expireDate;
     @ManyToOne
     private Dealer owner;
+    @OneToOne(mappedBy = "advert", cascade = CascadeType.PERSIST)
+    private AdvertDetails advertDetails;
+
+
+
 
     public Long getId() {
         return id;
@@ -58,5 +64,13 @@ public class Advert {
 
     public void setOwner(Dealer owner) {
         this.owner = owner;
+    }
+
+    public AdvertDetails getAdvertDetails() {
+        return advertDetails;
+    }
+
+    public void setAdvertDetails(AdvertDetails advertDetails) {
+        this.advertDetails = advertDetails;
     }
 }

@@ -26,6 +26,7 @@ public class AdvertDetails {
     @Column(name = "production_year")
     private Double productionYear;
     @OneToOne(optional = false)
+    @JoinColumn(name = "advert_id")
     private Advert advert;
 
 

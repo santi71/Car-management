@@ -16,6 +16,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = "/registration")
 public class RegistrationPageController {
+
     @Autowired
     private RegistrationService registrationService;
 

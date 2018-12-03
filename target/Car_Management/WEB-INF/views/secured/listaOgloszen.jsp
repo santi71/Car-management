@@ -16,7 +16,7 @@
 <ul>
     <c:forEach items="${adverts}" var="adv">
         <li>${adv.title}
-            <span>${adv.content}</span>
+            <span>${adv}</span>
         </li>
     </c:forEach>
 </ul>

@@ -4,7 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import pl.coderslab.carmanagement.dtos.AdvertFormDTO;
 import pl.coderslab.carmanagement.dtos.UserDTO;
-import pl.coderslab.carmanagement.entity.Advert;
+import pl.coderslab.carmanagement.model.advert.Advert;
+import pl.coderslab.carmanagement.model.advert.AdvertDetails;
 import pl.coderslab.carmanagement.model.user.User;
 
 
@@ -16,4 +17,5 @@ public interface MyConverter {
     UserDTO userDTO(User user);
     AdvertFormDTO advertDTO(Advert advert);
     Advert advert(AdvertFormDTO advertDTO);
+    AdvertDetails advertDetails(AdvertFormDTO advertFormDTO);
 }

@@ -3,20 +3,20 @@ package pl.coderslab.carmanagement.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.carmanagement.model.dealer.Dealer;
+import pl.coderslab.carmanagement.model.dealer.DealerDetails;
 import pl.coderslab.carmanagement.model.user.UserCredentials;
 import pl.coderslab.carmanagement.model.user.UserDetails;
 import pl.coderslab.carmanagement.dtos.RegistrationFormDTO;
 
 import pl.coderslab.carmanagement.model.user.User;
-import pl.coderslab.carmanagement.repositories.UserCredentialsRepository;
-import pl.coderslab.carmanagement.repositories.UserDetailsRepository;
-import pl.coderslab.carmanagement.repositories.UserRepository;
-import pl.coderslab.carmanagement.repositories.UserRoleRepository;
+import pl.coderslab.carmanagement.repositories.*;
 import pl.coderslab.carmanagement.model.user.UserRole;
 
 @Service
 @Transactional
 public class RegistrationService {
+
     @Autowired
     UserRepository userRepository;
 
@@ -28,6 +28,9 @@ public class RegistrationService {
 
     @Autowired
     private UserCredentialsRepository userCredentialsRepository;
+
+    @Autowired
+    private DealerRepository dealerRepository;
 
     public void register(RegistrationFormDTO form) {
         String login = form.getLogin();
@@ -46,10 +49,21 @@ public class RegistrationService {
             throw new IllegalArgumentException("Email zajęty!");
         }
 
-        User user = new User();
+        // W twoim przypadku rejestrujemy Dealer'a a nie User'a
+        // User jest tutaj nadklasą, a my chcemy stworzyć konkretną podklasę
+
+        Dealer user = new Dealer();
         user.setLogin(login);
         user.setEmail(email);
         user.setPassword(password);
+
+        // Zapis wymyślonych danych szczegółowych dealera
+        DealerDetails dealerDetails = new DealerDetails();
+        dealerDetails.setFirstName("Jan");
+        dealerDetails.setLastName("Zbigniew");
+        dealerDetails.setDealer(user);
+
+        user.setDetails(dealerDetails);
         userRepository.save(user);
 
         UserDetails details = new UserDetails();
@@ -69,5 +83,6 @@ public class RegistrationService {
         role.setRole("USER");
 
         userRoleRepository.save(role);
+
     }
 }

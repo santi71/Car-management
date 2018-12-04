@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class AdvertFormDTO {
+
     @NotNull @NotBlank @Size(min = 3, max = 20)
     private String title;
     @Size(max = 300)
@@ -108,5 +109,21 @@ public class AdvertFormDTO {
 
     public void setProductionYear(Double productionYear) {
         this.productionYear = productionYear;
+    }
+
+    @Override
+    public String toString() {
+        return "AdvertFormDTO{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", expireDate=" + expireDate +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", power=" + power +
+                ", price=" + price +
+                ", distance=" + distance +
+                ", productionYear=" + productionYear +
+                '}';
     }
 }

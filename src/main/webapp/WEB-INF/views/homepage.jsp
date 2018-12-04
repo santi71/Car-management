@@ -26,7 +26,7 @@
     <div class="option"> <a href="/adverts"> Spis ogłoszeń</a> </div>
     <div class="option"> <a>O stronie</a> </div>
     <div class="option"> <a href="https://www.blasty.pl/upload/images/large/2018/04/kurla-pjoter-nie-dziala_2018-04-18_11-59-00.jpg">Części samochodowe</a></div>
-    <div class="option"> <a href="/advert">Dodaj ogłoszenie</a></div>
+    <div class="option"> <a href="/adverts/add-advert">Dodaj ogłoszenie</a></div>
     <div style="clear: both"></div>
 
 </div>

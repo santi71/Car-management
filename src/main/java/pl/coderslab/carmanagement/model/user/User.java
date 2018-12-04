@@ -1,13 +1,11 @@
 package pl.coderslab.carmanagement.model.user;
 
-import pl.coderslab.carmanagement.entity.Advert;
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +15,6 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
     private String password;
-    @OneToMany
-    private List<Advert> adverts;
 
     public Long getId() {
         return id;
@@ -50,14 +46,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Advert> getAdverts() {
-        return adverts;
-    }
-
-    public void setAdverts(List<Advert> adverts) {
-        this.adverts = adverts;
     }
 
     @Override
